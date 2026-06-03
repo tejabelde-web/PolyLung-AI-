@@ -63,11 +63,31 @@ if st.button("Analyze"):
         st.json(data)
 
         import json
+        report = f"""
+PolyLung Bridge AI - Analysis Report
+=====================================
+Polymer Type:      {data['polymer_type']}
+Bridge Score:      {data['bridge_score']}
+Risk Tier:         {data['risk_tier']}
+Exposure Route:    {data['exposure_route']}
+Particle Count:    {data['particle_count']}
+ZIP Code:          {data['zip_code']}
+Warning Message:   {data['warning_message']}
+
+Internal Metrics
+-----------------
+MPRI Toxicity Weight:    {data['internal_metrics']['mpri_toxicity_weight']}
+PSPII Lung Weight:       {data['internal_metrics']['pspii_lung_weight']}
+Exposure Multiplier:     {data['internal_metrics']['exposure_multiplier']}
+Median Area Income:      {data['internal_metrics']['median_area_income']}
+Vulnerability Index:     {data['internal_metrics']['vulnerability_index']}
+Calculated MPRI:         {data['internal_metrics']['calculated_mpri']}
+"""
         st.download_button(
             label="Download Results",
-            data=json.dumps(data, indent=2),
-            file_name="polylungai_results.json",
-            mime="application/json"
+            data=report,
+            file_name="polylungai_results.txt",
+            mime="text/plain"
         )
     except Exception as exc:
         st.error(f"API call failed: {exc}")
