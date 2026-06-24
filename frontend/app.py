@@ -95,4 +95,3 @@ Calculated MPRI:         {data['internal_metrics']['calculated_mpri']}
 if uploaded is not None:
     st.info("Image received. Current mock flow uses metadata only; image model hook is ready for Phase 2.") 
 
-st.markdown("---\nMade by Sai T. Belde")
